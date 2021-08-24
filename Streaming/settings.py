@@ -118,3 +118,5 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = '/static/'
+# STATIC_ROOT = os.path.join(BASE_DIR, 'static') # -- Aquí funciona solo para producción "Descomentar cuando este en producción"
+STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)  # -- Aquí funciona solo en desarrollo "Comentar o eliminar cuando este en producción"

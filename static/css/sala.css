@@ -54,16 +54,35 @@ main{
 }
 
 .video-container{
-    background-color: #13151f;
-    border: 1px solid #2e334e;
-    border-radius: 15px;
+    padding: 0px;
     width: 100%;
     max-width: 1170px;
+    position: relative;
 }
 
 #local-video{
+    border-radius: 15px;
+    border: 1px solid #2e334e;
+    background-color: #13151f;
     width: 100%;
-    height: 100%;
+    max-height: 580px;
+}
+
+.external-videos{
+    position: absolute;
+    right: 0px;
+    top: 0px;
+    display: grid;
+    grid-gap: 10px;
+    grid-auto-rows: min-content;
+    padding: 15px 10px;
+}
+
+.external-v{
+    max-height: 95px;
+    border-radius: 15px;
+    border: 2px solid #ffffff;
+    background-color: #13151f;
 }
 
 .option-container{
@@ -82,11 +101,17 @@ main{
     margin: 0px 20px;
 }
 
+button{
+    cursor: pointer;
+    margin-bottom: 5px;
+}
+button:hover{
+    background-color: #313551;
+    box-shadow: 0px 0px 2px 5px #313551;
+}
+
 .btn{
-    background-color: transparent;
     border: none;
-    margin: 0px;
-    padding: 0px;
 }
 
 .btn-circle{

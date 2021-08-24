@@ -18,30 +18,33 @@
     </header>
     <main>
         <div class="video-container">
-            <video id="local-video" autoplay src="../../../../Semana 16/Mario Chris - Breakthrough Original.mp4" controls></video>
+            <video id="local-video" autoplay></video>
+            <!--Aqui nombre del usuario-->
+            <div id="nombreUsuario">Darling Buenaño</div>
             <div class="external-videos">
-                <video class="external-v" autoplay></video>
-                <video class="external-v" autoplay></video>
-                <video class="external-v" autoplay></video>
-                <video class="external-v" autoplay></video>
-                <video class="external-v" autoplay></video>
+                <div class="p-relative">
+                    <!--Aqui el video-->
+                    <video class="external-v" autoplay></video>
+                    <!--Aqui se coloca el nombre del que se conecta-->
+                    <div class="usuario-externo">Cristhian Buenaño</div>
+                </div>
             </div>
         </div>
         <div class="option-container">
             <div class="flex-column">
-                <button class="btn btn-circle">
+                <button class="btn btn-circle" id="btnCamara">
                     <img src="../../static/svg/video-call.svg" alt="">
                 </button>
                 <div>Cámara</div>
             </div>
             <div class="flex-column">
-                <button class="btn btn-circle">
+                <button class="btn btn-circle" id="btnMicrofono">
                     <img src="../../static/svg/microphone.svg" alt="">
                 </button>
                 <div>Micrófono</div>
             </div>
             <div class="flex-column">
-                <button class="btn btn-circle">
+                <button class="btn btn-circle" id="btnSalirLlamada">
                     <img src="../../static/svg/phone-call-end.svg" alt="">
                 </button>
                 <div>Salir</div>
@@ -49,4 +52,5 @@
         </div>
     </main>
 </body>
+<script src="../../static/js/sala.js"></script>
 </html>

@@ -68,6 +68,15 @@ main{
     max-height: 580px;
 }
 
+#nombreUsuario{
+    position: absolute;
+    left: 15px;
+    bottom: 15px;
+    background-color: rgb(0 0 0 / 60%);
+    padding: 5px 10px;
+    border-radius: 5px;
+}
+
 .external-videos{
     position: absolute;
     right: 0px;
@@ -78,11 +87,28 @@ main{
     padding: 15px 10px;
 }
 
+.p-relative{
+    position: relative;
+    margin: 0px;
+    padding: 0px;
+}
+
 .external-v{
     max-height: 95px;
-    border-radius: 15px;
+    max-width: 170px;
+    border-radius: 10px;
     border: 2px solid #ffffff;
     background-color: #13151f;
+}
+
+.usuario-externo{
+    font-size: 14px;
+    position: absolute;
+    left: 10px;
+    bottom: 10px;
+    background-color: rgb(0 0 0 / 60%);
+    padding: 5px 10px;
+    border-radius: 5px;
 }
 
 .option-container{

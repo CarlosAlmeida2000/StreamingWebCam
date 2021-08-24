@@ -4,15 +4,16 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../../static/css/sala.css">
     <title>Sala</title>
 </head>
 <body>
-    <header class="flex-horizontal">
-        <div>
+    <header class="flex-row">
+        <div class="img-logo">
             <img src="../../static/img/video-call.png" alt="">
         </div>
-        <div>
-            <span class="logo">Software Streaming</span>
+        <div class="logo">
+            <span class="txt-logo">Software Streaming</span>
         </div>
     </header>
     <main>
@@ -20,8 +21,23 @@
             <video id="local-video" autoplay></video>
         </div>
         <div class="option-container">
-            <div>
-                <button></button>
+            <div class="flex-column">
+                <button class="btn btn-circle">
+                    <img src="../../static/svg/video-call.svg" alt="">
+                </button>
+                <div>Cámara</div>
+            </div>
+            <div class="flex-column">
+                <button class="btn btn-circle">
+                    <img src="../../static/svg/microphone.svg" alt="">
+                </button>
+                <div>Micrófono</div>
+            </div>
+            <div class="flex-column">
+                <button class="btn btn-circle">
+                    <img src="../../static/svg/phone-call-end.svg" alt="">
+                </button>
+                <div>Salir</div>
             </div>
         </div>
     </main>

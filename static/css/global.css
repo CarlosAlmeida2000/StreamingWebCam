@@ -1,29 +1,30 @@
-
-body{
+body {
     margin: 0px;
     padding: 0px;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
     font-size: 16px;
 }
 
-.flex-row{
+.flex-row {
     display: flex;
     flex-direction: row;
     justify-content: flex-start;
     align-items: center;
 }
 
-img{
-    width: 100%;
+i {
+    font-size: 1.5rem;
+    color: aliceblue;
 }
 
-.p-relative{
+
+.p-relative {
     position: relative;
     margin: 0px;
     padding: 0px;
 }
 
-.option-container{
+.option-container {
     margin-top: 20px;
     display: flex;
     flex-direction: row;
@@ -31,7 +32,7 @@ img{
     align-items: center;
 }
 
-.flex-column{
+.flex-column {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -39,43 +40,43 @@ img{
     margin: 0px 20px;
 }
 
-button{
+button {
     cursor: pointer;
     margin-bottom: 5px;
 }
 
-.btn{
+.btn {
     border: none;
 }
 
-.btn-circle{
+.btn-circle {
     width: 50px;
     height: 50px;
     border-radius: 50%;
     padding: 10px;
 }
 
-#local-video{
+#local-video {
     border-radius: 15px;
     width: 100%;
     max-height: 580px;
 }
 
-.d-flex-all-center{
+.d-flex-all-center {
     display: flex;
     justify-content: center;
     align-items: center;
 }
 
-.m-10{
+.m-10 {
     margin: 10px;
 }
 
-.mt-30{
+.mt-30 {
     margin-top: 30px;
 }
 
-.flex-vertical-center{
+.flex-vertical-center {
     display: flex;
     align-items: center;
 }

@@ -1,36 +1,34 @@
-console.log(' main.js');
-
-var UsernameInput=document.querySelector('#nombreUsuario');
-var btnJoin=document.querySelector('#btnEntrarStreaming');
-var btnCamara=document.querySelector('#btnCamara');
-var btnMicrofono=document.querySelector('#btnMicrofono');
+var UsernameInput = document.querySelector("#nombreUsuario");
+var btnJoin = document.querySelector("#btnEntrarStreaming");
+var btnCamara = document.querySelector("#btnCamara");
+var btnMicrofono = document.querySelector("#btnMicrofono");
 
 var username;
 
 var webSocket;
 
-function webSocketOnMessage(event){
-    var parsedData= JSON.parse(event.data);
-    var message= parsedData['message'];
-    console.log('mensaje :', message)
+function webSocketOnMessage(event) {
+    var parsedData = JSON.parse(event.data);
+    var message = parsedData["message"];
+    console.log("mensaje :", message);
 }
 
-btnJoin.addEventListener('click',()=>{
-    username=UsernameInput.value;
+btnJoin.addEventListener("click", () => {
+    username = UsernameInput.value;
 
-    console.log('username: ',username);
+    console.log("username: ", username);
 
-    if(username == ''){
+    if (username == "") {
         return;
     }
-    
-    UsernameInput.value='';
-    UsernameInput.disabled=true;
-    UsernameInput.getElementsByClassName.visibility='hidden';
 
-    btnJoin.disabled=true;
-    btnJoin.getElementsByClassName.visibility='hidden';
-    
+    UsernameInput.value = "";
+    UsernameInput.disabled = true;
+    UsernameInput.getElementsByClassName.visibility = "hidden";
+
+    btnJoin.disabled = true;
+    btnJoin.getElementsByClassName.visibility = "hidden";
+
     /*var loc=window.location;
     var wsStart='ws://';
 
@@ -60,41 +58,49 @@ btnJoin.addEventListener('click',()=>{
     webSocket.addEventListener('error',(e)=>{
         console.log('conexion error')
     });*/
-
 });
 
-var localStream=new MediaStream();
+var localStream = new MediaStream();
 
 const constraints = {
-    'video':true,
-    'audio':true
+    video: true,
+    audio: true,
 };
 
-const localvideo=document.querySelector('#local-video');
+const localvideo = document.querySelector("#local-video");
 
-var userMedia = navigator.mediaDevices.getUserMedia(constraints)
-.then(stream=>{
-    localStream=stream;
-    localvideo.srcObject=localStream;
-    localvideo.muted=true;
-    var audioTraks=stream.getAudioTracks();
-    var videoTraks=stream.getVideoTracks();
+var userMedia = navigator.mediaDevices
+    .getUserMedia(constraints)
+    .then((stream) => {
+        localStream = stream;
+        localvideo.srcObject = localStream;
+        localvideo.muted = true;
+        var audioTraks = stream.getAudioTracks();
+        var videoTraks = stream.getVideoTracks();
 
-    audioTraks[0].enabled=true;
-    videoTraks[0].enabled=true;
+        audioTraks[0].enabled = true;
+        videoTraks[0].enabled = true;
 
-    btnMicrofono.addEventListener('click',()=>{
-        audioTraks[0].enabled=!audioTraks[0].enabled;
-        /*if(audioTraks[0].enabled){
-            btnMicrofono.innerHTML='Mute';
-            return;
-        }
-        btnMicrofono.innerHTML='Audio'*/
+        btnMicrofono.addEventListener("click", () => {
+            audioTraks[0].enabled = !audioTraks[0].enabled;
+            if (!audioTraks[0].enabled) {
+                document.getElementById("microphone").className =
+                    "fas fa-microphone-slash";
+            } else {
+                document.getElementById("microphone").className =
+                    "fas fa-microphone";
+            }
+        });
+        btnCamara.addEventListener("click", () => {
+            videoTraks[0].enabled = !videoTraks[0].enabled;
+            if (!videoTraks[0].enabled) {
+                document.getElementById("video").className =
+                    "fas fa-video-slash";
+            } else {
+                document.getElementById("video").className = "fas fa-video";
+            }
+        });
+    })
+    .catch((error) => {
+        console.log("Error accessing media devices", error);
     });
-    btnCamara.addEventListener('click',()=>{
-        videoTraks[0].enabled=!videoTraks[0].enabled;
-    });
-})
-.catch(error => {
-    console.log('Error accessing media devices',error);
-});

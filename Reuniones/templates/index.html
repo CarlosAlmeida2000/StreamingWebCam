@@ -1,13 +1,18 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/global.css">
-    <link rel="stylesheet" href="../../static/css/index.css">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
     <title>Unirse a la reunión</title>
 </head>
+
 <body>
     <main class="d-flex-all-center">
         <div class="flex-row">
@@ -16,10 +21,10 @@
                     <video id="local-video" autoplay></video>
                     <div class="opciones">
                         <button class="btn btn-circle m-10" id="btnCamara">
-                            <img src="../../static/svg/video-call.svg" alt="">
+                            <i class="fas fa-video" id="video"></i>
                         </button>
                         <button class="btn btn-circle m-10" id="btnMicrofono">
-                            <img src="../../static/svg/microphone.svg" alt="">
+                            <i class="fas fa-microphone" id="microphone"></i>
                         </button>
                     </div>
                 </div>
@@ -27,7 +32,7 @@
             <div class="row">
                 <div>
                     <p>Nombre de usuario</p>
-                    <input type="text" name="nombreUsuario" id="nombreUsuario"/>
+                    <input type="text" name="nombreUsuario" id="nombreUsuario" />
                 </div>
                 <div class="flex-vertical-center">
                     <button class="btn btn-streaming mt-30" id="btnEntrarStreaming">Entrar al Streaming</button>
@@ -36,5 +41,6 @@
         </div>
     </main>
 </body>
-<script src="../../static/js/index.js"></script>
+<script src="{% static 'js/index.js' %}"></script>
+
 </html>

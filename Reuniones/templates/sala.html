@@ -1,17 +1,21 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/sala.css">
-    <link rel="stylesheet" href="../../static/css/global.css">
+    <link rel="stylesheet" href="{% static 'css/sala.css' %}">
+    <link rel="stylesheet" href="{% static 'css/global.css' %}">
+    <link rel="stylesheet" href="{% static 'fontawesome/css/all.css' %}">
     <title>Sala</title>
 </head>
+
 <body>
     <header class="flex-row">
         <div class="img-logo">
-            <img src="../../static/img/video-call.png" alt="">
+            <img src="{% static 'img/video-call.png' %}" alt="">
         </div>
         <div class="logo">
             <span class="txt-logo">Software Streaming</span>
@@ -34,25 +38,26 @@
         <div class="option-container">
             <div class="flex-column">
                 <button class="btn btn-circle" id="btnCamara">
-                    <img src="../../static/svg/video-call.svg" alt="">
+                    <i class="fas fa-video" id="video"></i>
                 </button>
                 <div>Cámara</div>
             </div>
             <div class="flex-column">
                 <button class="btn btn-circle" id="btnMicrofono">
-                    <img src="../../static/svg/microphone.svg" alt="">
+                    <i class="fas fa-microphone" id="microphone"></i>
                 </button>
                 <div>Micrófono</div>
             </div>
             <div class="flex-column">
-                <input type="text" name="nombreUs" id="nombreUs"/>
+                <input type="text" name="nombreUs" id="nombreUs" />
                 <button class="btn btn-circle" id="btnSalirLlamada">
-                    <img src="../../static/svg/phone-call-end.svg" alt="">
+                    <img src="{% static 'svg/phone-call-end.svg' %}" alt="">
                 </button>
                 <div>Salir</div>
             </div>
         </div>
     </main>
 </body>
-<script src="../../static/js/sala.js"></script>
+<script src="{% static 'js/sala.js' %}"></script>
+
 </html>

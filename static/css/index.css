@@ -24,11 +24,15 @@ button:disabled{
 }
 
 .btn-streaming{
-    padding: 10px;
+    width: 275px;
+    padding: 15px 20px;
+    border-radius: 5px;
+    font-size: 16px;
 }
 
 input#nombreUsuario{
     display: block;
+    width: 250px;
     padding: .375rem .75rem;
     font-size: 1rem;
     line-height: 1.5;
@@ -43,9 +47,9 @@ input#nombreUsuario{
 input#nombreUsuario:focus {
     color: #495057;
     background-color: #fff;
-    border-color: #80bdff;
+    border-color: rgb(53, 58, 92);
     outline: 0;
-    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+    box-shadow: 0px 0px 2px 5px #747bb1;
 }
 
 .d-flex-all-center{

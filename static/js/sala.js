@@ -258,15 +258,26 @@ function addLocalTracks(peer) {
 }
 
 function createVideo(peerUsername) {
-    var videoContainer = document.querySelector("#video-container");
+    var videoContainer = document.querySelector("#external-videos");
+    
+    var p_relative = document.createElement("div");
     var remoteVideo = document.createElement("video");
+    var usuarios_externos = document.createElement("div");
+
+    p_relative.className = "p-relative";
+
     remoteVideo.id = peerUsername + "-video";
+    remoteVideo.className = "external-v";
     remoteVideo.autoplay = true;
     remoteVideo.playsInline = true;
 
-    var videoWrapper = document.createElement("div");
-    videoWrapper.appendChild(remoteVideo);
-    videoContainer.appendChild(videoWrapper);
+    usuarios_externos.className = "usuario-externo";
+    usuarios_externos.innerText = peerUsername;
+
+    p_relative.appendChild(remoteVideo);
+    p_relative.appendChild(usuarios_externos);
+    videoContainer.appendChild(p_relative);
+
     return remoteVideo;
 }
 

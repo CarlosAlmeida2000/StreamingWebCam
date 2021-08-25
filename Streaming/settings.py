@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'Reuniones',
+    'channels',
 ]
 
 MIDDLEWARE = [
@@ -120,3 +122,11 @@ USE_TZ = True
 STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static') # -- Aquí funciona solo para producción "Descomentar cuando este en producción"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)  # -- Aquí funciona solo en desarrollo "Comentar o eliminar cuando este en producción"
+
+ASGI_APPLICATION = 'Streaming.asgi.application'
+
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}

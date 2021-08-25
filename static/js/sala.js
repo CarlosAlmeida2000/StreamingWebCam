@@ -164,7 +164,6 @@ function createOfferer(peerUsername, receiver_channel_name) {
         .then(() => {
             console.log("Local description set succesfully");
         });
-    //1:14:41
 }
 function createAnswerer(offer, peerUserName, receiver_channel_name) {
     var peer = new RTCPeerConnection(null);
@@ -178,8 +177,6 @@ function createAnswerer(offer, peerUserName, receiver_channel_name) {
         peer.dc.addEventListener("open", () => {
             console.log("connection opened");
         });
-        peer.dc.addEventListener("message", dcOnMessage);
-        mapPeers[peerUsername] = [peer, peer.dc];
     });
 
     peer.addEventListener("iceconnectionstatechange", () => {
@@ -189,8 +186,6 @@ function createAnswerer(offer, peerUserName, receiver_channel_name) {
             iceconnectionstate === "disconnected" ||
             iceconnectionstate === "closed"
         ) {
-            delete mapPeers[peerUsername];
-
             if (iceconnectionstate != "closed") {
                 peer.close();
             }

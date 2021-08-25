@@ -70,3 +70,12 @@ button{
 .m-10{
     margin: 10px;
 }
+
+.mt-30{
+    margin-top: 30px;
+}
+
+.flex-vertical-center{
+    display: flex;
+    align-items: center;
+}

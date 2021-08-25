@@ -2,6 +2,8 @@ console.log(' main.js');
 
 var UsernameInput=document.querySelector('#nombreUsuario');
 var btnJoin=document.querySelector('#btnEntrarStreaming');
+var btnCamara=document.querySelector('#btnCamara');
+var btnMicrofono=document.querySelector('#btnMicrofono');
 
 var username;
 
@@ -28,8 +30,8 @@ btnJoin.addEventListener('click',()=>{
 
     btnJoin.disabled=true;
     btnJoin.getElementsByClassName.visibility='hidden';
-
-    var loc=window.location;
+    
+    /*var loc=window.location;
     var wsStart='ws://';
 
     if(loc.protocol == 'https:'){
@@ -57,7 +59,7 @@ btnJoin.addEventListener('click',()=>{
 
     webSocket.addEventListener('error',(e)=>{
         console.log('conexion error')
-    });
+    });*/
 
 });
 
@@ -75,6 +77,23 @@ var userMedia = navigator.mediaDevices.getUserMedia(constraints)
     localStream=stream;
     localvideo.srcObject=localStream;
     localvideo.muted=true;
+    var audioTraks=stream.getAudioTracks();
+    var videoTraks=stream.getVideoTracks();
+
+    audioTraks[0].enabled=true;
+    videoTraks[0].enabled=true;
+
+    btnMicrofono.addEventListener('click',()=>{
+        audioTraks[0].enabled=!audioTraks[0].enabled;
+        /*if(audioTraks[0].enabled){
+            btnMicrofono.innerHTML='Mute';
+            return;
+        }
+        btnMicrofono.innerHTML='Audio'*/
+    });
+    btnCamara.addEventListener('click',()=>{
+        videoTraks[0].enabled=!videoTraks[0].enabled;
+    });
 })
 .catch(error => {
     console.log('Error accessing media devices',error);

@@ -5,7 +5,9 @@ var mapPeers = {};
 var UsernameInput = document.querySelector("#nombreUs");
 var btnJoin = document.querySelector("#btnSalirLlamada");
 
-var username;
+var username = "Henry";
+var video = sessionStorage.getItem("video");
+var audio = sessionStorage.getItem("audio");
 
 var webSocket;
 
@@ -40,9 +42,7 @@ function webSocketOnMessage(event) {
 }
 
 btnJoin.addEventListener("click", () => {
-    username = UsernameInput.value;
-
-    console.log("username: ", UsernameInput.value);
+    console.log("username: ", username);
 
     if (username == "") {
         return;
@@ -66,16 +66,18 @@ btnJoin.addEventListener("click", () => {
 
     webSocket = new WebSocket(endPoint);
 
-    webSocket.addEventListener("open", (e) => {
+    webSocket.onopen = function () {
         console.log("conexion abierta");
         sendSignal("new-peer", {});
-    });
+    };
 
-    webSocket.addEventListener("message", webSocketOnMessage);
+    webSocket.onmessage = function (mensaje) {
+        console.log(webSocketOnMessage);
+    };
 
-    webSocket.addEventListener("close", (e) => {
+    webSocket.onclose = function () {
         console.log("conexion cerrada");
-    });
+    };
 
     webSocket.addEventListener("error", (e) => {
         console.log("conexion error");
@@ -259,7 +261,7 @@ function addLocalTracks(peer) {
 
 function createVideo(peerUsername) {
     var videoContainer = document.querySelector("#external-videos");
-    
+
     var p_relative = document.createElement("div");
     var remoteVideo = document.createElement("video");
     var usuarios_externos = document.createElement("div");

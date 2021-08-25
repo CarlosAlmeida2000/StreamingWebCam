@@ -4,8 +4,10 @@ var btnCamara = document.querySelector("#btnCamara");
 var btnMicrofono = document.querySelector("#btnMicrofono");
 
 var username;
+var video = true;
+var audio = true;
 
-var webSocket;
+const sesiones = sessionStorage;
 
 function webSocketOnMessage(event) {
     var parsedData = JSON.parse(event.data);
@@ -15,49 +17,21 @@ function webSocketOnMessage(event) {
 
 btnJoin.addEventListener("click", () => {
     username = UsernameInput.value;
+    if (username != "") {
+        sesiones.clear();
+        sesiones.setItem("nombre", username);
+        sesiones.setItem("audio", audio);
+        sesiones.setItem("video", video);
+        UsernameInput.value = "";
+        UsernameInput.disabled = true;
+        UsernameInput.getElementsByClassName.visibility = "hidden";
 
-    console.log("username: ", username);
-
-    if (username == "") {
-        return;
+        btnJoin.disabled = true;
+        btnJoin.getElementsByClassName.visibility = "hidden";
+        location.href = "sala";
+    } else {
+        alert("Debe colocar un nombre para entrar a la reunión grupal");
     }
-
-    UsernameInput.value = "";
-    UsernameInput.disabled = true;
-    UsernameInput.getElementsByClassName.visibility = "hidden";
-
-    btnJoin.disabled = true;
-    btnJoin.getElementsByClassName.visibility = "hidden";
-
-    /*var loc=window.location;
-    var wsStart='ws://';
-
-    if(loc.protocol == 'https:'){
-        wsStart='wss://';
-    }
-    var endPoint=wsStart+loc.host+loc.pathname;
-    console.log('endPoint: ',endPoint);
-    
-    webSocket =new WebSocket(endPoint);
-
-    webSocket.addEventListener('open',(e)=>{
-        console.log('conexion abierta');
-        var jsonStr = JSON.stringify({
-            'message':'Este es un mensaje',
-        });
-
-        webSocket.send(jsonStr);
-    });
-
-    webSocket.addEventListener('message',webSocketOnMessage);
-
-    webSocket.addEventListener('close',(e)=>{
-        console.log('conexion cerrada')
-    });
-
-    webSocket.addEventListener('error',(e)=>{
-        console.log('conexion error')
-    });*/
 });
 
 var localStream = new MediaStream();
@@ -83,6 +57,7 @@ var userMedia = navigator.mediaDevices
 
         btnMicrofono.addEventListener("click", () => {
             audioTraks[0].enabled = !audioTraks[0].enabled;
+            audio = audioTraks[0].enabled;
             if (!audioTraks[0].enabled) {
                 document.getElementById("microphone").className =
                     "fas fa-microphone-slash";
@@ -93,6 +68,7 @@ var userMedia = navigator.mediaDevices
         });
         btnCamara.addEventListener("click", () => {
             videoTraks[0].enabled = !videoTraks[0].enabled;
+            video = videoTraks[0].enabled;
             if (!videoTraks[0].enabled) {
                 document.getElementById("video").className =
                     "fas fa-video-slash";
@@ -104,3 +80,7 @@ var userMedia = navigator.mediaDevices
     .catch((error) => {
         console.log("Error accessing media devices", error);
     });
+
+// window.addEventListener("beforeunload", () => {
+//     sesiones.clear();
+// });

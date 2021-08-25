@@ -5,7 +5,7 @@ var mapPeers = {};
 var UsernameInput = document.querySelector("#nombreUs");
 var btnJoin = document.querySelector("#btnSalirLlamada");
 
-var username = "Henry";
+var username = sessionStorage.getItem("nombre");
 var video = sessionStorage.getItem("video");
 var audio = sessionStorage.getItem("audio");
 
@@ -66,18 +66,16 @@ btnJoin.addEventListener("click", () => {
 
     webSocket = new WebSocket(endPoint);
 
-    webSocket.onopen = function () {
+    webSocket.addEventListener("open", (e) => {
         console.log("conexion abierta");
         sendSignal("new-peer", {});
-    };
+    });
 
-    webSocket.onmessage = function (mensaje) {
-        console.log(webSocketOnMessage);
-    };
+    webSocket.addEventListener("message", webSocketOnMessage);
 
-    webSocket.onclose = function () {
+    webSocket.addEventListener("close", (e) => {
         console.log("conexion cerrada");
-    };
+    });
 
     webSocket.addEventListener("error", (e) => {
         console.log("conexion error");

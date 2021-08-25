@@ -35,7 +35,7 @@ btnJoin.addEventListener("click", () => {
 });
 
 var localStream = new MediaStream();
-
+'use strict'
 const constraints = {
     video: true,
     audio: true,
@@ -46,6 +46,7 @@ const localvideo = document.querySelector("#local-video");
 var userMedia = navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
+        window.stream = stream;
         localStream = stream;
         localvideo.srcObject = localStream;
         localvideo.muted = true;

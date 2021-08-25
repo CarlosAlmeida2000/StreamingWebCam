@@ -97,6 +97,7 @@ const btnCamara = document.querySelector("#btnCamara");
 var userMedia = navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {
+        window.stream = stream;
         localStream = stream;
         localvideo.srcObject = localStream;
         localvideo.muted = true;

@@ -9,12 +9,6 @@ var audio = true;
 
 const sesiones = sessionStorage;
 
-function webSocketOnMessage(event) {
-    var parsedData = JSON.parse(event.data);
-    var message = parsedData["message"];
-    console.log("mensaje :", message);
-}
-
 btnJoin.addEventListener("click", () => {
     username = UsernameInput.value;
     if (username != "") {
@@ -35,7 +29,7 @@ btnJoin.addEventListener("click", () => {
 });
 
 var localStream = new MediaStream();
-'use strict'
+("use strict");
 const constraints = {
     video: true,
     audio: true,
@@ -81,7 +75,3 @@ var userMedia = navigator.mediaDevices
     .catch((error) => {
         console.log("Error accessing media devices", error);
     });
-
-// window.addEventListener("beforeunload", () => {
-//     sesiones.clear();
-// });

@@ -1,6 +1,6 @@
-{% load static %}
 <!DOCTYPE html>
 <html lang="es">
+{% load static %}
 
 <head>
     <meta charset="UTF-8">
@@ -24,7 +24,7 @@
     <main>
         <div id="video-container">
             <video id="local-video" autoplay></video>
-            <div id="nombreUsuario">Darling Buenaño</div>
+            <div id="nombreUsuario"></div>
             <div class="external-videos" id="external-videos">
                 <!--Aqui se añaden los usuarios-->
             </div>
@@ -43,7 +43,6 @@
                 <div>Micrófono</div>
             </div>
             <div class="flex-column">
-                <input type="text" name="nombreUs" id="nombreUs" />
                 <button class="btn btn-circle" id="btnSalirLlamada">
                     <img src="{% static 'svg/phone-call-end.svg' %}" alt="">
                 </button>
@@ -51,7 +50,8 @@
             </div>
         </div>
     </main>
+    <!-- <script src="{% static 'js/conectionSW.js' %}"></script> -->
+    <script src="{% static 'js/sala.js' %}"></script>
 </body>
-<script src="{% static 'js/sala.js' %}"></script>
 
 </html>

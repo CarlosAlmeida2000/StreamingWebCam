@@ -2,7 +2,6 @@ console.log(" main.js");
 
 var mapPeers = {};
 
-var UsernameInput = document.querySelector("#nombreUs");
 var btnJoin = document.querySelector("#btnSalirLlamada");
 
 var username = sessionStorage.getItem("nombre");
@@ -42,44 +41,7 @@ function webSocketOnMessage(event) {
 }
 
 btnJoin.addEventListener("click", () => {
-    console.log("username: ", username);
-
-    if (username == "") {
-        return;
-    }
-
-    UsernameInput.value = "";
-    UsernameInput.disabled = true;
-    UsernameInput.style.visibility = "hidden";
-
-    btnJoin.disabled = true;
-    btnJoin.style.visibility = "hidden";
-
-    var loc = window.location;
-    var wsStart = "ws://";
-
-    if (loc.protocol == "https:") {
-        wsStart = "wss://";
-    }
-    var endPoint = wsStart + loc.host + loc.pathname;
-    console.log("endPoint: ", endPoint);
-
-    webSocket = new WebSocket(endPoint);
-
-    webSocket.addEventListener("open", (e) => {
-        console.log("conexion abierta");
-        sendSignal("new-peer", {});
-    });
-
-    webSocket.addEventListener("message", webSocketOnMessage);
-
-    webSocket.addEventListener("close", (e) => {
-        console.log("conexion cerrada");
-    });
-
-    webSocket.addEventListener("error", (e) => {
-        console.log("conexion error");
-    });
+    location.href = "/";
 });
 
 var localStream = new MediaStream();
@@ -105,8 +67,22 @@ var userMedia = navigator.mediaDevices
         var audioTraks = stream.getAudioTracks();
         var videoTraks = stream.getVideoTracks();
 
-        audioTraks[0].enabled = true;
-        videoTraks[0].enabled = true;
+        console.log(audio + " " + video);
+
+        audioTraks[0].enabled = audio == "true";
+        videoTraks[0].enabled = video == "true";
+        if (!audioTraks[0].enabled) {
+            document.getElementById("microphone").className =
+                "fas fa-microphone-slash";
+        } else {
+            document.getElementById("microphone").className =
+                "fas fa-microphone";
+        }
+        if (!videoTraks[0].enabled) {
+            document.getElementById("video").className = "fas fa-video-slash";
+        } else {
+            document.getElementById("video").className = "fas fa-video";
+        }
 
         btnMicrofono.addEventListener("click", () => {
             audioTraks[0].enabled = !audioTraks[0].enabled;
@@ -174,10 +150,7 @@ function createOfferer(peerUsername, receiver_channel_name) {
 
     peer.addEventListener("icecandidate", (event) => {
         if (event.candidate) {
-            console.log(
-                "new ice candidate: ",
-                JSON.stringify(peer.localDescription)
-            );
+            console.log("Entro un nuevo candidato");
             return;
         }
         sendSignal("new-offer", {
@@ -227,10 +200,7 @@ function createAnswerer(offer, peerUserName, receiver_channel_name) {
 
     peer.addEventListener("icecandidate", (event) => {
         if (event.candidate) {
-            console.log(
-                "new ice candidate: ",
-                JSON.stringify(peer.localDescription)
-            );
+            console.log("Entro un nuevo candidato");
             return;
         }
         sendSignal("new-answer", {
@@ -295,3 +265,36 @@ function removeVideo(video) {
 
     videoWrapper.parentNode.removeChild(videoWrapper);
 }
+
+window.addEventListener("load", () => {
+    const session = sessionStorage.length;
+    if (session <= 1) {
+        location.href = "/";
+    }
+    document.getElementById("nombreUsuario").innerHTML = username;
+    setTimeout(function () {
+        var loc = window.location;
+        var wsStart = "ws://";
+        if (loc.protocol == "https:") {
+            wsStart = "wss://";
+        }
+        var endPoint = wsStart + loc.host + loc.pathname;
+        console.log("endPoint: ", endPoint);
+        webSocket = new WebSocket(endPoint);
+        webSocket.addEventListener("open", (e) => {
+            console.log("conexion abierta");
+            sendSignal("new-peer", {});
+        });
+        webSocket.addEventListener("message", webSocketOnMessage);
+        webSocket.addEventListener("close", (e) => {
+            console.log("conexion cerrada");
+        });
+        webSocket.addEventListener("error", (e) => {
+            console.log("conexion error");
+        });
+    }, 2000);
+});
+
+window.addEventListener("beforeunload", () => {
+    sessionStorage.clear();
+});

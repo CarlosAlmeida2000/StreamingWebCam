@@ -4,21 +4,21 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../../static/css/index.css">
     <link rel="stylesheet" href="../../static/css/global.css">
+    <link rel="stylesheet" href="../../static/css/index.css">
     <title>Unirse a la reunión</title>
 </head>
 <body>
-    <main>
+    <main class="d-flex-all-center">
         <div class="flex-row">
             <div class="row">
                 <div class="flex-column">
-                    <video id="local-video" autoplay></video>
+                    <video id="local-video" autoplay src="../../../Mario Chris - Breakthrough Original.mp4" controls></video>
                     <div class="opciones">
-                        <button class="btn btn-circle" id="btnCamara">
+                        <button class="btn btn-circle m-10" id="btnCamara">
                             <img src="../../static/svg/video-call.svg" alt="">
                         </button>
-                        <button class="btn btn-circle" id="btnMicrofono">
+                        <button class="btn btn-circle m-10" id="btnMicrofono">
                             <img src="../../static/svg/microphone.svg" alt="">
                         </button>
                     </div>
@@ -26,11 +26,11 @@
             </div>
             <div class="row">
                 <div>
-                    <div>Nombre de usuario</div>
+                    <p>Nombre de usuario</p>
                     <input type="text" name="nombreUsuario" id="nombreUsuario"/>
                 </div>
                 <div>
-                    <button class="btn">Entrar al Streaming</button>
+                    <button class="btn btn-streaming">Entrar al Streaming</button>
                 </div>
             </div>
         </div>

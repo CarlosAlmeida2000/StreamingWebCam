@@ -7,11 +7,11 @@ class ChatConsumer(AsyncWebsocketConsumer):
         self.room_group_name = "Test-Room"
         await self.channel_layer.group_add(self.room_group_name, self.channel_name)
         await self.accept()
-        print("Conectado!!!!!!!!")
+        print("Conectado!!!")
 
     async def disconnect(self, close_code):
         await self.channel_layer.group_discard(self.room_group_name, self.channel_name)
-        print("Descontectado!!!!!!!!!!!")
+        print("Descontectado!!!")
 
     async def receive(self, text_data):
         receive_dict = json.loads(text_data)
@@ -19,8 +19,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
         action = receive_dict["action"]
         print(action)
         if (action == "new-offer") or (action == "new-answer"):
-            print("Recibe algo")
-
             receiver_channel_name = receive_dict["message"]["receiver_channel_name"]
             receive_dict["message"]["receiver_channel_name"] = self.channel_name
 

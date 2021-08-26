@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.0/ref/settings/
 """
 
+
 import os
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
@@ -25,7 +26,7 @@ SECRET_KEY = "%3nt=x@*6^=^48cx8q4rlzg6tcoi$30b0vo-@10@#qgys%gw4m"
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = False
 
-ALLOWED_HOSTS = ["*"]
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -49,7 +50,11 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+<<<<<<< HEAD
     "whitenoise.middleware.WhiteNoiseMiddleware",
+=======
+    'whitenoise.middleware.WhiteNoiseMiddleware',
+>>>>>>> bd7e4d3f9049186879cb89e25f584aa8652a3ac4
 ]
 
 ROOT_URLCONF = "Streaming.urls"
@@ -78,9 +83,9 @@ WSGI_APPLICATION = "Streaming.wsgi.application"
 
 
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.path.join(BASE_DIR, "db.sqlite3"),
+     'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
 
@@ -123,9 +128,11 @@ USE_TZ = True
 
 STATIC_URL = "/static/"
 STATIC_ROOT = os.path.join(BASE_DIR, "static")  # -- Aquí funciona solo para producción "Descomentar cuando este en producción"
-STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)  # -- Aquí funciona solo en desarrollo "Comentar o eliminar cuando este en producción"
+#STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)  # -- Aquí funciona solo en desarrollo "Comentar o eliminar cuando este en producción"
 
 ASGI_APPLICATION = "Streaming.asgi.application"
 STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}}

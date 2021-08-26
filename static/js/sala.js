@@ -274,7 +274,10 @@ function removeVideo(video) {
     videoWrapper.parentNode.removeChild(videoWrapper);
 }
 
+<<<<<<< HEAD
 // Establecer conexón cuando carga la página
+=======
+>>>>>>> bd7e4d3f9049186879cb89e25f584aa8652a3ac4
 window.addEventListener("load", () => {
     const session = sessionStorage.length;
     if (session <= 1) {
@@ -287,6 +290,7 @@ window.addEventListener("load", () => {
         // if (loc.protocol == "https:") {
         //     wsStart = "wss://";
         // }
+
         var endPoint = wsStart + loc.host + loc.pathname;
         console.log("endPoint: ", endPoint);
         webSocket = new WebSocket(endPoint);
@@ -304,7 +308,10 @@ window.addEventListener("load", () => {
     }, 2000);
 });
 
+<<<<<<< HEAD
 // Eliminar todas las sesiones del navegardor
+=======
+>>>>>>> bd7e4d3f9049186879cb89e25f584aa8652a3ac4
 window.addEventListener("beforeunload", () => {
     sessionStorage.clear();
 });

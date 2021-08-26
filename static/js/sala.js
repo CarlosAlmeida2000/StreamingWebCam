@@ -284,9 +284,9 @@ window.addEventListener("load", () => {
     setTimeout(function () {
         var loc = window.location;
         var wsStart = "ws://";
-        if (loc.protocol == "https:") {
-            wsStart = "wss://";
-        }
+        // if (loc.protocol == "https:") {
+        //     wsStart = "wss://";
+        // }
         var endPoint = wsStart + loc.host + loc.pathname;
         console.log("endPoint: ", endPoint);
         webSocket = new WebSocket(endPoint);

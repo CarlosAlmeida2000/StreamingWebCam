@@ -23,7 +23,7 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = "%3nt=x@*6^=^48cx8q4rlzg6tcoi$30b0vo-@10@#qgys%gw4m"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
 ALLOWED_HOSTS = ["*"]
 
@@ -49,6 +49,7 @@ MIDDLEWARE = [
     "django.contrib.auth.middleware.AuthenticationMiddleware",
     "django.contrib.messages.middleware.MessageMiddleware",
     "django.middleware.clickjacking.XFrameOptionsMiddleware",
+    "whitenoise.middleware.WhiteNoiseMiddleware",
 ]
 
 ROOT_URLCONF = "Streaming.urls"
@@ -121,9 +122,10 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/3.0/howto/static-files/
 
 STATIC_URL = "/static/"
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static') # -- Aquí funciona solo para producción "Descomentar cuando este en producción"
+STATIC_ROOT = os.path.join(BASE_DIR, "static")  # -- Aquí funciona solo para producción "Descomentar cuando este en producción"
 STATICFILES_DIRS = (os.path.join(BASE_DIR, "static"),)  # -- Aquí funciona solo en desarrollo "Comentar o eliminar cuando este en producción"
 
 ASGI_APPLICATION = "Streaming.asgi.application"
+STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 CHANNEL_LAYERS = {"default": {"BACKEND": "channels.layers.InMemoryChannelLayer"}}

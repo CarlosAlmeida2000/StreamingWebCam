@@ -1,3 +1,4 @@
+// Obtenemos todos los datos de los contenedores y botones.
 var UsernameInput = document.querySelector("#nombreUsuario");
 var btnJoin = document.querySelector("#btnEntrarStreaming");
 var btnCamara = document.querySelector("#btnCamara");
@@ -7,11 +8,14 @@ var username;
 var video = true;
 var audio = true;
 
+// Creamos una variable sesión para solo guardar los datos en el navegador
 const sesiones = sessionStorage;
 
+// Añadimos un evento click al botón de entrar reunión
 btnJoin.addEventListener("click", () => {
     username = UsernameInput.value;
     if (username != "") {
+        // Limpiamos y guargamos todos los datos necesarios en una variable sesión
         sesiones.clear();
         sesiones.setItem("nombre", username);
         sesiones.setItem("audio", audio);
@@ -37,6 +41,7 @@ const constraints = {
 
 const localvideo = document.querySelector("#local-video");
 
+// Permite utilizar el audio y cámara de mi dispositivo
 var userMedia = navigator.mediaDevices
     .getUserMedia(constraints)
     .then((stream) => {

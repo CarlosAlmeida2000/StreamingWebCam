@@ -1,1 +1,0 @@
-web: gunicorn Streaming.wsgi --log-file -

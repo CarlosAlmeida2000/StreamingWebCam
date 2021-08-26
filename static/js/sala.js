@@ -1,34 +1,27 @@
-// Creamos una variable que nos guarda todo los cliente que se conextan
-// al la sala.
+console.log(" main.js");
+
 var mapPeers = {};
 
 var btnJoin = document.querySelector("#btnSalirLlamada");
 
-// Obtenemos los datos que se guardaron en sesión
 var username = sessionStorage.getItem("nombre");
 var video = sessionStorage.getItem("video");
 var audio = sessionStorage.getItem("audio");
 
-// Declaramos una variable para utilizar WebSocket
 var webSocket;
 
-// Obtenemos los mensajes que nos envía el WebSocket y creamos toda la conexión
-// para transmitir video mediante WebRTC
 function webSocketOnMessage(event) {
     var parsedData = JSON.parse(event.data);
 
     var peerUsername = parsedData["peer"];
     var action = parsedData["action"];
 
-    // Verificamos si el p2p ese el mismo
     if (username == peerUsername) {
         return;
     }
 
-    // Añadimos el nuevo p2p
     var receiver_channel_name = parsedData["message"]["receiver_channel_name"];
     if (action == "new-peer") {
-        //
         createOfferer(peerUsername, receiver_channel_name);
         return;
     }
@@ -47,12 +40,10 @@ function webSocketOnMessage(event) {
     }
 }
 
-// Salir de la reunión
 btnJoin.addEventListener("click", () => {
     location.href = "/";
 });
 
-//
 var localStream = new MediaStream();
 
 const constraints = {
@@ -127,7 +118,6 @@ function sendSignal(action, message) {
     webSocket.send(jsonStr);
 }
 
-// Crear nueva p2p y establecer conexión.
 function createOfferer(peerUsername, receiver_channel_name) {
     var peer = new RTCPeerConnection(null);
     addLocalTracks(peer);
@@ -175,8 +165,6 @@ function createOfferer(peerUsername, receiver_channel_name) {
             console.log("Local description set succesfully");
         });
 }
-
-// Crear más usuario p2p
 function createAnswerer(offer, peerUserName, receiver_channel_name) {
     var peer = new RTCPeerConnection(null);
     addLocalTracks(peer);
@@ -235,7 +223,6 @@ function addLocalTracks(peer) {
     return;
 }
 
-// Crear div para mostrar el video del usuario p2p
 function createVideo(peerUsername) {
     var videoContainer = document.querySelector("#external-videos");
 
@@ -274,7 +261,6 @@ function removeVideo(video) {
     videoWrapper.parentNode.removeChild(videoWrapper);
 }
 
-// Establecer conexón cuando carga la página
 window.addEventListener("load", () => {
     const session = sessionStorage.length;
     if (session <= 1) {
@@ -287,7 +273,6 @@ window.addEventListener("load", () => {
         if (loc.protocol == "https:") {
             wsStart = "wss://";
         }
-
         var endPoint = wsStart + loc.host + loc.pathname;
         console.log("endPoint: ", endPoint);
         webSocket = new WebSocket(endPoint);
@@ -305,7 +290,6 @@ window.addEventListener("load", () => {
     }, 2000);
 });
 
-// Eliminar todas las sesiones del navegardor
 window.addEventListener("beforeunload", () => {
     sessionStorage.clear();
 });
